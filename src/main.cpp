@@ -1,3 +1,6 @@
+#include "fstream"
+
+using std::ifstream;
 
 /// main function
 int main(int argc, char** argv) {
@@ -9,5 +12,8 @@ int main(int argc, char** argv) {
         }
     } else {
         /// argv[1] est le nom du fichier a résoudre
+
+        /* pas besoin de le fermer il sera détruit en sorti de scope */
+        ifstream input = ifstream(argv[1]);
     }
 }
