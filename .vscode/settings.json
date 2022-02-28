@@ -3,5 +3,8 @@
     "C_Cpp.vcFormat.indent.lambdaBracesWhenParameter": false,
     "C_Cpp.vcFormat.indent.multiLineRelativeTo": "statementBegin",
     "C_Cpp.vcFormat.newLine.beforeOpenBrace.block": "sameLine",
-    "C_Cpp.vcFormat.newLine.beforeOpenBrace.function": "sameLine"
+    "C_Cpp.vcFormat.newLine.beforeOpenBrace.function": "sameLine",
+    "files.associations": {
+        "fstream": "cpp"
+    }
 }

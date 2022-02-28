@@ -1,7 +1,7 @@
-default: bin/main
+default: bin/main.out
 
-bin/main: bin/main.o
-  g++ $< -o $@
+bin/main.out: bin/main.o
+	g++ $< -o $@
 
-bin/main.o: src/main.cpp
-  g++ $< -c -o $@
+bin/%.o: src/%.cpp
+	g++ $< -c -o $@
