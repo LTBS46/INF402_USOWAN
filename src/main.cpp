@@ -14,11 +14,11 @@ int main(int argc, char** argv) try {
     if (argc != 2) {
         if (argc == 1) {
             /// pas d'argument
-            cerr << "il n'y a pas de fichier a résoudre" << endl;
+            cerr << "il n'y a pas de fichier a résoudre." << endl;
             return -1;
         } else {
             /// trop >1
-            cerr << "il y a trop d'argument : " << (argc - 1) << endl;
+            cerr << "il y a trop d'argument : " << (argc - 1) << "." << endl;
             return -1;
         }
     } else {
