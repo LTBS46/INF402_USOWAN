@@ -1,5 +1,7 @@
 default: bin/main.out
 
+#
+
 bin/main.out: bin/main.o bin/Grid.o
 	g++ $^ -o $@
 
