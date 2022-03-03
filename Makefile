@@ -1,10 +1,8 @@
 default: bin/main.out
 
-CXXFLAGS=-O3 -g -Wall -Wextra
-
-bin/main.out: bin/main.o
-	g++ $< -o $@ $(CXXFLAGS)
+bin/main.out: bin/main.o bin/Grid.o
+	g++ $^ -o $@
 
 bin/%.o: src/%.cpp
-	g++ $< -c -o $@ $(CXXFLAGS)
+	g++ $< -c -o $@ -O3 -g -Wall -Wextra
 	

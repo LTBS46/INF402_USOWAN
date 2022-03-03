@@ -1,3 +1,5 @@
+#include "common.hpp"
+
 #include <exception>
 #include <fstream>
 #include <iostream>
