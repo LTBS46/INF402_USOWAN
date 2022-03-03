@@ -1,11 +1,15 @@
 #pragma once
 
+#include <stdexcept>
+
+using std::out_of_range;
+
 // la class qui suit est un template donc TOUT est dans le header même les définition
 template<class E>
 class BaseGrid {
     protected:
-    E* elements;
     unsigned l, h;
+    E* elements;
 
     public:
     BaseGrid(unsigned __l, unsigned __h) : l(__l), h(__h), elements(new E[l * h]) { }
