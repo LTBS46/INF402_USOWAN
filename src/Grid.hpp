@@ -1,11 +1,10 @@
 #pragma once
 
+#include "BaseGrid.hpp"
 #include "common.hpp"
 
-class Grid final {
+class Grid final : public BaseGrid<signed char> {
     protected:
-    unsigned l, h;
-    signed char* cells;
     bool* vwall;
     bool* hwall;
 
@@ -13,10 +12,5 @@ class Grid final {
 
     //constructeur
     Grid(unsigned __l, unsigned __h);
-
-
-    void set_cell_value(unsigned x, unsigned y, signed char v);
-
-
-    signed char get_cell_value(unsigned x, unsigned y) const;
+    virtual ~Grid(void);
 };
