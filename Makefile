@@ -7,3 +7,4 @@ bin/main.out: bin/main.o
 
 bin/%.o: src/%.cpp
 	g++ $< -c -o $@ $(CXXFLAGS)
+	
