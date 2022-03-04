@@ -17,7 +17,7 @@ class BaseGrid {
     //pourquoi "virtual", parce que c'est mieux, et si vous voulez savoir : giyf
     virtual ~BaseGrid(void) { delete [] elements; }
 
-    void set_cell_value(unsigned x, unsigned y, signed char v) {
+    void set_cell_value(unsigned x, unsigned y, E v) {
         if (x >= l || y >= h)throw out_of_range("bad cell index");
         elements[x + l * h] = v;
     }
