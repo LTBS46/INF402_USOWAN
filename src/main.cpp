@@ -33,13 +33,13 @@ int main(int argc, char** argv) try {
 
         /* nom du fichier */
         path file_name = path(string(argv[1]));
-        
+
         /* on regarde si il s'agit d'un fichier normal */
-        if(! is_regular_file(file_name)) {
+        if (!is_regular_file(file_name)) {
             cerr << "le chemin indiqué n'est pas un fichier." << endl;
             return -1;
         }
-        
+
         /* pas besoin de le fermer il sera détruit en sorti de scope */
         ifstream input = ifstream(file_name);
     }
