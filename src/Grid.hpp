@@ -3,11 +3,11 @@
 #include "BaseGrid.hpp"
 #include "common.hpp"
 
-class Grid final : public BaseGrid<signed char> {
+class Grid final {
     protected:
-    bool* vwall;
-    bool* hwall;
-
+    BaseGrid<signed char> values;
+    BaseGrid<signed char*> regions;
+    BaseGrid<signed char> color; // =0 => N/A, >0 => 
     public:
 
     //constructeur

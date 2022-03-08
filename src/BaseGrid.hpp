@@ -2,7 +2,9 @@
 
 #include <stdexcept>
 #include <utility>
+#include <tuple>
 
+using std::tuple;
 using std::move;
 using std::out_of_range;
 
@@ -14,15 +16,17 @@ class BaseGrid {
     E* elements;
 
     public:
-    BaseGrid(unsigned __l, unsigned __h) : l(__l), h(__h), elements(new E[l * h]) { }
-
+    BaseGrid(unsigned __l, unsigned __h) : l(__l), h(__h), elements((l* h) == 0 ? new E[l * h]() : nullptr) { }
+    BaseGrid(void) noexcept : BaseGrid(0, 0) { }
     BaseGrid(const BaseGrid& b) : BaseGrid(b.l, b.h) { for (unsigned k = 0;k < (h * l);k++) elements[k] = b.elements[k]; }
     BaseGrid(BaseGrid&& b) : l(b.l), h(b.h), elements(b.elements) { b.elements = nullptr; }
     virtual BaseGrid& operator=(const BaseGrid& b) { return *this = move(BaseGrid(b)); }
     virtual BaseGrid& operator=(BaseGrid&& b) { l = b.l, h = b.h, elements = b.elements, b.elements = nullptr; return *this; }
 
+    virtual tuple<unsigned, unsigned> get_size(void) const { return { l, h }; }
+
     //pourquoi "virtual", parce que c'est mieux, et si vous voulez savoir : giyf
-    virtual ~BaseGrid(void) { if(!is_empty())delete [] elements; }
+    virtual ~BaseGrid(void) { if (!is_empty())delete [] elements; }
 
     virtual bool is_empty(void) const { return elements == nullptr; }
 
@@ -30,6 +34,7 @@ class BaseGrid {
         if (x >= l || y >= h)throw out_of_range("bad cell index");
         return elements[x + l * h];
     }
+
     virtual E& get_cell_value(unsigned x, unsigned y) {
         if (x >= l || y >= h)throw out_of_range("bad cell index");
         return elements[x + l * h];

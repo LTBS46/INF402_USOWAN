@@ -1,10 +1,14 @@
 #include "Grid.hpp"
 
+using std::get;
 
-
-Grid::Grid(unsigned __l, unsigned __h) : BaseGrid<signed char>(__l, __h), vwall(new bool[(l - 1) * h]()), hwall(new bool[l * (h - 1)]()) {
-    unsigned n = l, m = h;
-    while (n-- > 0)while (m-- > 0)set_cell_value(n, m, -1);
+Grid::Grid(unsigned __l, unsigned __h) : values(__l, __h), regions(), color(__l, __h) {
+    auto s = values.get_size();
+    unsigned n = get<0>(s), m;
+    while (n-- > 0) {
+        m = get<1>(s);
+        while (m-- > 0)values.get_cell_value(n, m) = -1;
+    }
 }
 
-Grid::~Grid(void) { delete [] vwall; delete [] hwall; }
+Grid::~Grid(void) { }
