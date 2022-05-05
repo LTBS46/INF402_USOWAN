@@ -4,7 +4,7 @@ FLAGS=-g -Wall
 all: main
 
 main: main.o case.o variable.o grille.o parser.o clause.o formule.o region.o sat.o
-	$(CC) $(FLAGS) -o main main.o case.o variable.o grille.o parser.o clause.o formule.o region.o
+	$(CC) $(FLAGS) -o main $^
 
 
 main.o: main.cpp grille.hpp parser.hpp
