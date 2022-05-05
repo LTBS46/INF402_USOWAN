@@ -10,5 +10,3 @@ Grid::Grid(unsigned __l, unsigned __h) : values(__l, __h), regions(), color(__l,
         while (m-- > 0)values.get_cell_value(n, m) = -1;
     }
 }
-
-Grid::~Grid(void) { }

@@ -4,13 +4,12 @@
 #include "common.hpp"
 
 class Grid final {
-    protected:
+protected:
     BaseGrid<signed char> values;
     BaseGrid<signed char*> regions;
     BaseGrid<signed char> color; // =0 => N/A, >0 => 
-    public:
+public:
 
     //constructeur
     Grid(unsigned __l, unsigned __h);
-    virtual ~Grid(void);
 };
