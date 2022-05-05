@@ -1,18 +1,17 @@
 #include "clause.hpp"
 
-using namespace std;
+using std::cout;
+using std::to_string;
 
-Clause::Clause(forme _type) {
-	type =_type;
-}
+Clause::Clause(forme _type) : type(_type) { }
 
 void Clause::AfficherClause() {
-	int index=0;
+	unsigned long index = 0;
 	for (Variable v : vars) {
 		if (v.GetNeg()) {
 			cout << "-";
 		}
-		switch(v.GetType()) {
+		switch (v.GetType()) {
 			case COCHEE:
 				cout << "C";
 				break;
@@ -21,8 +20,8 @@ void Clause::AfficherClause() {
 				break;
 		}
 		cout << v.GetIndex();
-		if (index < vars.size()-1) {
-			switch(v.GetType()) {
+		if (index < vars.size() - 1) {
+			switch (v.GetType()) {
 				case FNC:
 					cout << " ou ";
 					break;
@@ -50,6 +49,6 @@ string Clause::GetDimacs() {
 	return output;
 }
 
-int Clause::GetSize() {
+size_t Clause::GetSize() const {
 	return vars.size();
 }

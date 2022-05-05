@@ -1,24 +1,20 @@
-#ifndef FORMULE_H
-#define FORMULE_H
+#pragma once
 
 #include <iostream>
 #include <vector>
 #include "clause.hpp"
 
-using namespace std;
+using std::vector;
 
-class Formule {
+class Formule final {
 
-public:
-	
+	public:
+
 	Formule(forme _type);
-	
+
 	forme type;
 	vector<Clause> form;
-	
+
 	void AfficherFormule();
 	void Convert();
 };
-
-
-#endif

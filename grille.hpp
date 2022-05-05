@@ -1,5 +1,4 @@
-#ifndef GRILLE_H
-#define GRILLE_H
+#pragma once
 
 
 #include <iostream>
@@ -11,32 +10,29 @@
 #include "region.hpp"
 #include "sat.hpp"
 
-using namespace std;
 
-class Grille {
-public:
-	
+class Grille final {
+	public:
+
 	Grille(Parser parser);
-	
-	int GetH();
-	int GetL();
+
+	constexpr int GetH() const noexcept {
+		return h;
+	}
+	constexpr int GetL() const noexcept {
+		return l;
+	}
 	Case GetCase(int x, int y);
 
-	
+
 	void AfficherGrille();
-		
-		
-private:
+
+
+	private:
 	int h;
 	int l;
-	
+
 	vector<vector<Case>> cases;
 	vector<Region> regions;
-	
+
 };
-
-
-
-
-
-#endif

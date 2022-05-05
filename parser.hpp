@@ -1,28 +1,28 @@
-#ifndef PARSER_H
-#define PARSER_H
+#pragma once
 
 #include <iostream>
 #include <list>
 #include <fstream>
 #include "case.hpp"
 
-using namespace std;
+using std::list;
+using std::string;
 
-class Parser {
-public:
-	
+class Parser final {
+	public:
+
 	Parser(string filePath);
-	
-	int GetH();
-	int GetL();
-	list<Case> GetNumbers();
+
+	constexpr int GetH() const noexcept { return h; }
+	constexpr int GetL() const noexcept { return l; }
+	constexpr const list<Case>& GetNumbers() {
+		return numbers;
+	}
 
 	list<list<int>> regions;
 
-private:
+	private:
 	int h, l;
 	list<Case> numbers;
-	
-};
 
-#endif
+};

@@ -1,60 +1,41 @@
 #include "parser.hpp"
 
-using namespace std;
+using std::ifstream;
+using std::cout;
+using std::ios;
+using std::endl;
 
 Parser::Parser(string filePath) {
-	fstream file;
-	
-	file.open(filePath, ios::in);
-	
-	if(file.fail()) {
-		cout << "Couldn't open file" << endl;
+	ifstream file(filePath);
+
+	if (file.fail()) {
+		cout << "Couldn't open file\n"; // peut-etre plutot cerr ?
 		exit(-2);
 	}
-	
-	
-	string hauteur;
-	string largeur;
-	
-	file >> hauteur >> largeur;
-	
-	h = stoi(hauteur);
-	l = stoi(largeur);
-	
+
+	file >> h >> l;
+
 	string content;
-	
-	while(file >> content) {
+
+	while (file >> content) {
 		if (content == "n") {
-			string x, y, n;
+			int x, y, n;
 			file >> x >> y >> n;
-			numbers.push_back(Case(stoi(x), stoi(y), NUM_CASE, 0, stoi(n)));
+			numbers.push_back(Case(x, y, NUM_CASE, 0, n));
 		} else if (content == "r") {
 			list<int> region;
-			
-			file >> content;
-			int end = stoi(content);
-			
+
+			int end;
+			file >> end;
+
 			for (int i = 0; i < end; i++) {
-				file >> content;
-				region.push_back(stoi(content));
+				int val;
+				file >> val;
+				region.push_back(val);
 			}
-			
+
 			regions.push_back(region);
 		}
 	}
-	
-	file.close();
-}
 
-
-int Parser::GetH() {
-	return h;
-}
-
-int Parser::GetL() {
-	return l;
-}
-
-list<Case> Parser::GetNumbers() {
-	return numbers;
 }

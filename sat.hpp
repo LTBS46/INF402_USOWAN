@@ -1,5 +1,4 @@
-#ifndef SAT_H
-#define SAT_H
+#pragma once
 
 #include <cstdio>
 #include <iostream>
@@ -10,11 +9,7 @@
 
 class SAT {
 
-public:
+    public:
     static std::string exec(const char* cmd);
 
 };
-
-
-
-#endif

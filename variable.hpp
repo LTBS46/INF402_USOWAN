@@ -1,42 +1,31 @@
-#ifndef VARIABLE_H
-#define VARIABLE_H
-
+#pragma once
 
 enum varType {
 	COCHEE,
 	MENTEUR,
 };
 
+class Variable final {
+	public:
+	constexpr Variable(int i = -1) noexcept
+		: type(COCHEE), index(i), neg(false) { }
 
-class Variable {
+	constexpr Variable(const Variable& v1) = default;
+	constexpr bool operator==(const Variable& v1) const {
+		return (type == v1.type) && (index == v1.index) && (neg == v1.neg);
+	}
 
-public:
-
-	Variable(int i=-1);
-	
-	Variable(const Variable &v1);
-	bool operator==(const Variable &v1);
-	
-	
-private:
-
+	private:
 	varType type;
 	int index;
 	bool neg;
 
-public:
+	public:
+	constexpr varType GetType() const { return type; }
+	constexpr bool GetNeg() const { return neg; }
+	constexpr int GetIndex() const { return index; }
 
-	varType GetType();
-	bool GetNeg();
-	int GetIndex();
-
-	void SetType(varType _type);
-	void SetNeg(bool _neg);
-	void SetIndex(int _index);
-
+	constexpr void SetType(varType _type) { type = _type; }
+	constexpr void SetNeg(bool _neg) { neg = _neg; }
+	constexpr void SetIndex(int _index) { index = _index; }
 };
-
-
-
-
-#endif

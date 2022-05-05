@@ -1,5 +1,4 @@
-#ifndef CLAUSE_H
-#define CLAUSE_H
+#pragma once
 
 #include <iostream>
 #include <vector>
@@ -7,28 +6,26 @@
 #include "case.hpp"
 #include "variable.hpp"
 
-using namespace std;
+using std::vector;
+using std::string;
 
 enum forme {
 	FNC,
 	FND,
 };
 
-class Clause {
+class Clause final {
 
-public:
+	public:
 
 	Clause(forme _type = FNC);
-	
+
 	void AfficherClause();
 	string GetDimacs();
-	
-	int GetSize();
-	
+
+	size_t GetSize() const;
+
 	forme type;
 	vector<Variable> vars;
-	
+
 };
-
-
-#endif

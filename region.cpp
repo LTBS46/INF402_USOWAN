@@ -1,10 +1,7 @@
 #include "region.hpp"
 
-using namespace std;
 
-Region::Region() {
-
-}
+Region::Region() {}
 
 void Region::CreerClauses() {
 
@@ -39,7 +36,7 @@ void Region::ClauseUnMenteur() {
 
 
 
-void Region::RenderClauses(fstream& file) {
+void Region::RenderClauses(ostream& file) {
     if (clausesRegion.type != FNC) {
         clausesRegion.Convert();
     }

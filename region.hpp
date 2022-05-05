@@ -1,5 +1,4 @@
-#ifndef REGION_H
-#define REGION_H
+#pragma once
 
 #include "case.hpp"
 #include "formule.hpp"
@@ -7,23 +6,20 @@
 #include <iostream>
 #include <fstream>
 
-using namespace std;
+using std::vector;
+using std::ostream;
 
-class Region {
-public:
+class Region final {
+    public:
     Region();
 
     vector<Case> cases;
     Formule clausesRegion = Formule(FND);
 
     void CreerClauses();
-    void RenderClauses(fstream& file);
+    void RenderClauses(ostream& file);
 
-private:
+    private:
     void ClauseUnMenteur();
 
 };
-
-
-
-#endif
