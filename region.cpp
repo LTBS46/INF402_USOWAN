@@ -1,15 +1,12 @@
 #include "region.hpp"
 
-
-Region::Region() {}
+Region::Region() { }
 
 void Region::CreerClauses() {
-
     // Si une case est menteur, les autres ne le sont pas
     ClauseUnMenteur();
 
     // Combinaisons si une case  n'est pas menteur
-
 }
 
 void Region::ClauseUnMenteur() {
@@ -33,8 +30,6 @@ void Region::ClauseUnMenteur() {
         clausesRegion.form.push_back(new_clause);
     }
 }
-
-
 
 void Region::RenderClauses(ostream& file) {
     if (clausesRegion.type != FNC) {

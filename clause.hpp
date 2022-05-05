@@ -1,13 +1,14 @@
 #pragma once
 
 #include <iostream>
-#include <vector>
 #include <string>
+#include <vector>
+
 #include "case.hpp"
 #include "variable.hpp"
 
-using std::vector;
 using std::string;
+using std::vector;
 
 enum forme {
 	FNC,
@@ -15,9 +16,7 @@ enum forme {
 };
 
 class Clause final {
-
 	public:
-
 	Clause(forme _type = FNC);
 
 	void AfficherClause();
@@ -27,5 +26,4 @@ class Clause final {
 
 	forme type;
 	vector<Variable> vars;
-
 };

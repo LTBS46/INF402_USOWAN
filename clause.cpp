@@ -49,6 +49,4 @@ string Clause::GetDimacs() {
 	return output;
 }
 
-size_t Clause::GetSize() const {
-	return vars.size();
-}
+size_t Clause::GetSize() const { return vars.size(); }

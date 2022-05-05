@@ -1,15 +1,15 @@
 #include "parser.hpp"
 
-using std::ifstream;
 using std::cout;
-using std::ios;
 using std::endl;
+using std::ifstream;
+using std::ios;
 
 Parser::Parser(string filePath) {
 	ifstream file(filePath);
 
 	if (file.fail()) {
-		cout << "Couldn't open file\n"; // peut-etre plutot cerr ?
+		cout << "Couldn't open file\n";  // peut-etre plutot cerr ?
 		exit(-2);
 	}
 
@@ -37,5 +37,4 @@ Parser::Parser(string filePath) {
 			regions.push_back(region);
 		}
 	}
-
 }

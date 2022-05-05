@@ -1,10 +1,11 @@
 
-#include "grille.hpp"
 #include <utility>
-using std::ofstream;
-using std::ios;
+
+#include "grille.hpp"
 using std::cout;
+using std::ios;
 using std::move;
+using std::ofstream;
 
 Grille::Grille(Parser parser) : h(parser.GetH()), l(parser.GetL()), cases() {
 	cases.reserve(h);
@@ -24,7 +25,7 @@ Grille::Grille(Parser parser) : h(parser.GetH()), l(parser.GetL()), cases() {
 	}
 
 	int regionI = 0;
-	for (const list<int> & r : parser.regions) {
+	for (const list<int>& r : parser.regions) {
 		Region new_region = Region();
 		for (int i : r) {
 			--i;
@@ -48,10 +49,7 @@ Grille::Grille(Parser parser) : h(parser.GetH()), l(parser.GetL()), cases() {
 	// string sat_output = SAT::exec("varisat dimacs_out");
 }
 
-Case Grille::GetCase(int x, int y) {
-	return cases.at(y).at(x);
-}
-
+Case Grille::GetCase(int x, int y) { return cases.at(y).at(x); }
 
 void Grille::AfficherGrille() {
 	for (vector<Case> col : cases) {

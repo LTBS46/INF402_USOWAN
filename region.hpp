@@ -1,13 +1,14 @@
 #pragma once
 
+#include <fstream>
+#include <iostream>
+#include <vector>
+
 #include "case.hpp"
 #include "formule.hpp"
-#include <vector>
-#include <iostream>
-#include <fstream>
 
-using std::vector;
 using std::ostream;
+using std::vector;
 
 class Region final {
     public:
@@ -21,5 +22,4 @@ class Region final {
 
     private:
     void ClauseUnMenteur();
-
 };

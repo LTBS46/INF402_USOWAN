@@ -2,14 +2,13 @@
 
 #include <iostream>
 #include <vector>
+
 #include "clause.hpp"
 
 using std::vector;
 
 class Formule final {
-
 	public:
-
 	Formule(forme _type);
 
 	forme type;
