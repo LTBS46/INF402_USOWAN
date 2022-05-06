@@ -24,4 +24,5 @@ class Region final {
     private:
     void ClauseUnMenteur(); // Règle: Un seul menteur par région
     void ClauseConfigNonMenteur(LUT case_type_lut); // Règle: combinaisons possibles si la case ne ment pas
+    void ClauseConfigMenteur(LUT case_type_lut); // Règle: combinaisons possibles si la case ment
 };

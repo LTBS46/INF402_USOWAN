@@ -54,13 +54,29 @@ void Formule::Convert() {  // TODO: compléter IF
 	// pour chaque clause de fnd
 	// push l'element correspondant dans fnc
 
+	vector<int> indices_to_destroy;
+
 	for (auto& elem : form) {
 		auto ___gs = elem.GetSize();
 		offset /= ___gs;
+		std::cout << "Creating N = " << N << " clauses" << std::endl;
 		for (int i = 0; i < N; i++) {
 			int index = (i / offset) % ___gs;
 			Variable var = elem.vars[index];
-			fnc[i].vars.push_back(var);
+
+			if (std::find(fnc[i].vars.begin(), fnc[i].vars.end(), var) == fnc[i].vars.end()) {
+				fnc[i].vars.push_back(var);
+			}
+
+			Variable negVar = var;
+			negVar.SetNeg(!negVar.GetNeg());
+
+			if (std::find(fnc[i].vars.begin(), fnc[i].vars.end(), negVar) == fnc[i].vars.end()) {
+				// std::cout << "added clause to destroy" << "\n";
+				indices_to_destroy.push_back(i);
+				continue;
+			}
+
 		}
 	}
 

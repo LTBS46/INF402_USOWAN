@@ -43,13 +43,15 @@ Grille::Grille(Parser parser) : h(parser.GetH()), l(parser.GetL()), cases() {
 	{
 		ofstream dimacs("dimacs_out");
 		for (Region r : regions) {
+			cout << "calling new region" << std::endl;
 			r.CreerClauses(case_type_lut);
 			r.RenderClauses(dimacs);
+			cout << "region done" << std::endl;
 		}
 	}
-	string sat_output = SAT::exec("varisat dimacs_out");
-	cout << sat_output << "\n";
-	SAT::GetResult(sat_output, h, l);
+	// string sat_output = SAT::exec("varisat dimacs_out");
+	// cout << sat_output << "\n";
+	// SAT::GetResult(sat_output, h, l);
 	case_type_lut.AfficherLUT();
 }
 

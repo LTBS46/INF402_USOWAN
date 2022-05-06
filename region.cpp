@@ -4,11 +4,13 @@ Region::Region() { }
 
 void Region::CreerClauses(LUT case_type_lut) {
     // Si une case est menteur, les autres ne le sont pas
+    // std::cout << "Creating clauses for new region" << std::endl;
     ClauseUnMenteur();
     ClauseConfigNonMenteur(case_type_lut);
-
+    ClauseConfigMenteur(case_type_lut);
+    
     clausesRegion.AfficherFormule();
-
+    // std::cout << "Done with creating region" << std::endl;
     // Combinaisons si une case  n'est pas menteur
 }
 
@@ -67,7 +69,41 @@ void Region::ClauseConfigNonMenteur(LUT case_type_lut) {
 
 
     }
+}
 
+void Region::ClauseConfigMenteur(LUT case_type_lut) {
+    for (Case c : cases) {
+
+        int available = case_type_lut.GetAvailableCaseCount(c.GetIndex());
+
+        
+        for (int k=0; k<available; k++) {
+            if (k==c.GetN()) {
+                continue;
+            }
+
+            vector<vector<int>> combos = case_type_lut.GetCombinationNonMenteur(c.GetIndex(), k);
+
+            for (vector<int> comb : combos) {
+                Clause clause = Clause(forme::FND);
+
+                Variable menteur = c.var;
+                menteur.SetNeg(false);
+                clause.vars.push_back(menteur);
+
+                for (int i : comb) {
+                    Variable var = Variable(i);
+                    var.SetNeg(false);
+                    var.SetType(varType::COCHEE);
+                    clause.vars.push_back(var);
+                }
+
+                clausesRegion.form.push_back(clause);
+            }
+        }
+
+
+    }
 }
 
 void Region::RenderClauses(ostream& file) {
