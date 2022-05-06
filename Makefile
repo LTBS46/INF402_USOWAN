@@ -3,8 +3,8 @@ FLAGS=-g -Wall -Wextra -O3 -std=c++17 -flto
 
 all: main
 
-main: main.o case.o variable.o grille.o parser.o clause.o formule.o region.o sat.o lut.o
-	$(CC) $(FLAGS) -o main $^
+main: main.cpp *.hpp
+	$(CC) $(FLAGS) -o main $<
 
 
 main.o: main.cpp grille.hpp parser.hpp
