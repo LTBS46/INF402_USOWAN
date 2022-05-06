@@ -10,14 +10,14 @@
 using std::string;
 using std::vector;
 
-enum forme {
+enum class forme {
 	FNC,
 	FND,
 };
 
 class Clause final {
 	public:
-	Clause(forme _type = FNC);
+	Clause(forme _type = forme::FNC);
 
 	void AfficherClause();
 	string GetDimacs();

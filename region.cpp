@@ -14,15 +14,13 @@ void Region::CreerClauses(LUT case_type_lut) {
 
 void Region::ClauseUnMenteur() {
     for (Case c : cases) {
-        Clause new_clause = Clause(FND);
+        Clause new_clause = Clause(forme::FND);
         Variable menteur = c.var;
 
         new_clause.vars.push_back(menteur);
 
         for (Case c1 : cases) {
-            if (c.var.GetIndex() == c1.var.GetIndex()) {
-                continue;
-            } else {
+            if (c.var.GetIndex() != c1.var.GetIndex()) {
                 Variable non_menteur = c1.var;
                 non_menteur.SetNeg(!c1.var.GetNeg());
 
@@ -40,7 +38,7 @@ void Region::ClauseConfigNonMenteur(LUT case_type_lut) {
         int available = case_type_lut.GetAvailableCaseCount(c.GetIndex());
 
         if (c.GetN() > available) { // Cas impossible: nombre de cases adjacentes disponibles < nombre de la case
-            Clause single = Clause(FND);
+            Clause single = Clause(forme::FND);
             Variable menteur = c.var;
             menteur.SetNeg(false);
             single.vars.push_back(menteur);
@@ -51,7 +49,7 @@ void Region::ClauseConfigNonMenteur(LUT case_type_lut) {
             vector<vector<int>> combos = case_type_lut.GetCombinationNonMenteur(c.GetIndex(), c.GetN());
 
             for (vector<int> comb : combos) {
-                Clause clause = Clause(FND);
+                Clause clause = Clause(forme::FND);
 
                 Variable non_menteur = c.var;
                 non_menteur.SetNeg(true);
@@ -60,7 +58,7 @@ void Region::ClauseConfigNonMenteur(LUT case_type_lut) {
                 for (int i : comb) {
                     Variable var = Variable(i);
                     var.SetNeg(false);
-                    var.SetType(COCHEE);
+                    var.SetType(varType::COCHEE);
                     clause.vars.push_back(var);
                 }
                 clausesRegion.form.push_back(clause);
@@ -73,7 +71,7 @@ void Region::ClauseConfigNonMenteur(LUT case_type_lut) {
 }
 
 void Region::RenderClauses(ostream& file) {
-    if (clausesRegion.type != FNC) {
+    if (clausesRegion.type != forme::FNC) {
         clausesRegion.Convert();
     }
 

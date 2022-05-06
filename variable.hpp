@@ -1,6 +1,6 @@
 #pragma once
 
-enum varType {
+enum class varType {
 	COCHEE,
 	MENTEUR,
 };
@@ -8,7 +8,7 @@ enum varType {
 class Variable final {
 	public:
 	constexpr Variable(int i = -1) noexcept
-		: type(COCHEE), index(i), neg(false) { }
+		: type(varType::COCHEE), index(i), neg(false) { }
 
 	constexpr Variable(const Variable& v1) = default;
 	constexpr bool operator==(const Variable& v1) const {

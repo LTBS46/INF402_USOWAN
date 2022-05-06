@@ -1,5 +1,5 @@
 CC=g++
-FLAGS=-g -Wall -Wextra -O3 -std=c++17
+FLAGS=-g -Wall -Wextra -O3 -std=c++17 -flto
 
 all: main
 

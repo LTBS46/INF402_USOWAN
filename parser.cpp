@@ -21,7 +21,7 @@ Parser::Parser(string filePath) {
 		if (content == "n") {
 			int x, y, n;
 			file >> x >> y >> n;
-			numbers.push_back(Case(x, y, NUM_CASE, 0, n));
+			numbers.push_back(Case(x, y, caseType::NUM_CASE, 0, n));
 		} else if (content == "r") {
 			list<int> region;
 

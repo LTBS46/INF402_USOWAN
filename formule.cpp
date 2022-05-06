@@ -12,10 +12,10 @@ void Formule::AfficherFormule() {
 
 		if (index < form.size() - 1) {
 			switch (type) {
-				case FNC:
+				case forme::FNC:
 					cout << ") et (";
 					break;
-				case FND:
+				case forme::FND:
 					cout << ") ou (";
 					break;
 			}
@@ -41,11 +41,12 @@ void Formule::Convert() {  // TODO: compléter IF
 
 
 	for (Clause& c : form) {
-		S += c.GetSize();
-		N *= c.GetSize();
+		auto ___gs = c.GetSize();
+		S += ___gs;
+		N *= ___gs;
 	}
 
-	vector<Clause> fnc(N, Clause(FNC));
+	vector<Clause> fnc(N, Clause(forme::FNC));
 
 	int offset = N;
 
@@ -53,24 +54,22 @@ void Formule::Convert() {  // TODO: compléter IF
 	// pour chaque clause de fnd
 	// push l'element correspondant dans fnc
 
-	for (unsigned long j = 0; j < form.size(); j++) {
-		offset = offset / form.at(j).GetSize();
-
+	for (auto& elem : form) {
+		auto ___gs = elem.GetSize();
+		offset /= ___gs;
 		for (int i = 0; i < N; i++) {
-			// Formule de la variable correspondante dans la clause
-			int index = (i / offset) % form.at(j).GetSize();
-
-			Variable var = form.at(j).vars.at(index);
-
-			fnc.at(i).vars.push_back(var);
+			int index = (i / offset) % ___gs;
+			Variable var = elem.vars[index];
+			fnc[i].vars.push_back(var);
 		}
 	}
 
-	if (type == FND) {
+
+	if (type == forme::FND) {
 		form = fnc;
-		type = FNC;
-	} else if (type == FNC) {
+		type = forme::FNC;
+	} else if (type == forme::FNC) {
 		form = fnc;
-		type = FND;
+		type = forme::FND;
 	}
 }

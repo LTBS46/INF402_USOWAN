@@ -12,20 +12,20 @@ void Clause::AfficherClause() {
 			cout << "-";
 		}
 		switch (v.GetType()) {
-			case COCHEE:
+			case varType::COCHEE:
 				cout << "C";
 				break;
-			case MENTEUR:
+			case varType::MENTEUR:
 				cout << "M";
 				break;
 		}
 		cout << v.GetIndex();
 		if (index < vars.size() - 1) {
 			switch (type) {
-				case FNC:
+				case forme::FNC:
 					cout << " ou ";
 					break;
-				case FND:
+				case forme::FND:
 					cout << " et ";
 					break;
 			}
@@ -41,12 +41,9 @@ string Clause::GetDimacs() {
 		if (v.GetNeg()) {
 			output += "-";
 		}
-		output += to_string(v.GetIndex() + 1);
-		output += " ";
+		output += to_string(v.GetIndex() + 1) + " ";
 	}
-	output += "0";
-
-	return output;
+	return output + "0";
 }
 
 size_t Clause::GetSize() const { return vars.size(); }

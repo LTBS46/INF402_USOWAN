@@ -16,7 +16,7 @@ class Region final {
     Region();
 
     vector<Case> cases;
-    Formule clausesRegion = Formule(FND);
+    Formule clausesRegion = Formule(forme::FND);
 
     void CreerClauses(LUT case_type_lut);
     void RenderClauses(ostream& file);

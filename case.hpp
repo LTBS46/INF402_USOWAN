@@ -2,7 +2,7 @@
 
 #include "variable.hpp"
 
-enum caseType {
+enum class caseType {
 	BW_CASE,
 	NUM_CASE,
 };
@@ -17,11 +17,11 @@ class Case final {
 		type(_type),
 		var(Variable(index)) {
 		switch (type) {
-			case BW_CASE:
-				var.SetType(COCHEE);
+			case caseType::BW_CASE:
+				var.SetType(varType::COCHEE);
 				break;
-			case NUM_CASE:
-				var.SetType(MENTEUR);
+			case caseType::NUM_CASE:
+				var.SetType(varType::MENTEUR);
 				break;
 		}
 	}
@@ -50,11 +50,11 @@ class Case final {
 		type = _type;
 
 		switch (type) {
-			case BW_CASE:
-				var.SetType(COCHEE);
+			case caseType::BW_CASE:
+				var.SetType(varType::COCHEE);
 				break;
-			case NUM_CASE:
-				var.SetType(MENTEUR);
+			case caseType::NUM_CASE:
+				var.SetType(varType::MENTEUR);
 				break;
 		}
 	}
