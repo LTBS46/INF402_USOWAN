@@ -39,34 +39,38 @@ void Formule::Convert() {  // TODO: compléter IF
 	int N = 1;
 	int S = 0;
 
+
+	for (Clause& c : form) {
+		S += c.GetSize();
+		N *= c.GetSize();
+	}
+
+	vector<Clause> fnc(N, Clause(FNC));
+
+	int offset = N;
+
+	// Pour  toute clause de fnc
+	// pour chaque clause de fnd
+	// push l'element correspondant dans fnc
+
+	for (unsigned long j = 0; j < form.size(); j++) {
+		offset = offset / form.at(j).GetSize();
+
+		for (int i = 0; i < N; i++) {
+			// Formule de la variable correspondante dans la clause
+			int index = (i / offset) % form.at(j).GetSize();
+
+			Variable var = form.at(j).vars.at(index);
+
+			fnc.at(i).vars.push_back(var);
+		}
+	}
+
 	if (type == FND) {
-		for (Clause& c : form) {
-			S += c.GetSize();
-			N *= c.GetSize();
-		}
-
-		vector<Clause> fnc(N, Clause(FNC));
-
-		int offset = N;
-
-		// Pour  toute clause de fnc
-		// pour chaque clause de fnd
-		// push l'element correspondant dans fnc
-
-		for (unsigned long j = 0; j < form.size(); j++) {
-			offset = offset / form.at(j).GetSize();
-
-			for (int i = 0; i < N; i++) {
-				// Formule de la variable correspondante dans la clause
-				int index = (i / offset) % form.at(j).GetSize();
-
-				Variable var = form.at(j).vars.at(index);
-
-				fnc.at(i).vars.push_back(var);
-			}
-		}
-
 		form = fnc;
 		type = FNC;
+	} else if (type == FNC) {
+		form = fnc;
+		type = FND;
 	}
 }

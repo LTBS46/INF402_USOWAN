@@ -21,7 +21,7 @@ void Clause::AfficherClause() {
 		}
 		cout << v.GetIndex();
 		if (index < vars.size() - 1) {
-			switch (v.GetType()) {
+			switch (type) {
 				case FNC:
 					cout << " ou ";
 					break;

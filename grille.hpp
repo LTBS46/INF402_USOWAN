@@ -9,6 +9,7 @@
 #include "parser.hpp"
 #include "region.hpp"
 #include "sat.hpp"
+#include "lut.hpp"
 
 class Grille final {
 	public:

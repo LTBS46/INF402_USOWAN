@@ -10,6 +10,8 @@ using std::ofstream;
 Grille::Grille(Parser parser) : h(parser.GetH()), l(parser.GetL()), cases() {
 	cases.reserve(h);
 
+	LUT case_type_lut = LUT(h, l);	// Look-Up table for case type (false: black and white, true: number)
+
 	for (int k = 0; k < h; ++k) {
 		vector<Case> ligne;
 		ligne.reserve(l);
@@ -22,6 +24,7 @@ Grille::Grille(Parser parser) : h(parser.GetH()), l(parser.GetL()), cases() {
 	for (Case num : parser.GetNumbers()) {
 		num.SetIndex((num.GetY() * h) + num.GetX());
 		cases.at(num.GetY()).at(num.GetX()) = num;
+		case_type_lut.Set(num.GetX(), num.GetY(), true);
 	}
 
 	int regionI = 0;
@@ -42,11 +45,14 @@ Grille::Grille(Parser parser) : h(parser.GetH()), l(parser.GetL()), cases() {
 	{
 		ofstream dimacs("dimacs_out");
 		for (Region r : regions) {
-			r.CreerClauses();
+			r.CreerClauses(case_type_lut);
 			r.RenderClauses(dimacs);
 		}
 	}
-	// string sat_output = SAT::exec("varisat dimacs_out");
+	string sat_output = SAT::exec("varisat dimacs_out");
+	cout << sat_output << "\n";
+	SAT::GetResult(sat_output, h, l);
+	case_type_lut.AfficherLUT();
 }
 
 Case Grille::GetCase(int x, int y) { return cases.at(y).at(x); }
