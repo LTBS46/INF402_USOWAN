@@ -1,5 +1,5 @@
 #pragma once
-
+#include <iostream>
 #include "variable.hpp"
 
 enum class caseType {
@@ -7,9 +7,13 @@ enum class caseType {
 	NUM_CASE,
 };
 
-class Case final {
+using std::cout;
+using std::nullptr_t;
+
+template<nullptr_t>
+class Case_ final {
 	public:
-	constexpr Case(int _x, int _y, caseType _type, int _index, int _n = -1)
+	constexpr Case_(int _x, int _y, caseType _type, int _index, int _n = -1)
 		: x(_x),
 		y(_y),
 		n(_n),
@@ -25,8 +29,13 @@ class Case final {
 				break;
 		}
 	}
-	constexpr Case(const Case& c1) = default;
-	bool operator==(const Case& c1);
+	constexpr Case_(const Case_& c1) = default;
+	bool operator==(const Case_& c1) {
+		cout << "Testing case equality\n";
+		bool isEqual = (x == c1.x) && (y == c1.y) && (n == c1.n) &&
+			(index == c1.index) && (type == c1.type) && (var == c1.var);
+		return isEqual;
+	}
 
 	private:
 	int x;
@@ -61,3 +70,5 @@ class Case final {
 
 	constexpr void SetN(int _n) { n = _n; }
 };
+
+using Case = Case_<nullptr>;

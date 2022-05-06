@@ -7,7 +7,25 @@
 
 using std::vector;
 
-vector<vector<int>> comb(int N, int K);
+template<class T>
+vector<vector<T>> comb(T N, T K) {
+    std::string bitmask(K, 1); // K leading 1's
+    bitmask.resize(N, 0); // N-K trailing 0's
+
+    vector<vector<T>> output;
+
+    // print integers and permute bitmask
+    do {
+        vector<T> combo;
+        for (T i = 0; i < N; ++i) // [0..N-1] integers
+        {
+            if (bitmask[i]) combo.push_back(i);
+        }
+        output.push_back(combo);
+    } while (std::prev_permutation(bitmask.begin(), bitmask.end()));
+
+    return output;
+}
 
 // Look-Up Table class for solved grid/case type
 
@@ -116,5 +134,6 @@ class _LUT {
     vector<vector<bool>> table;
 
 };
+
 
 using LUT = _LUT<int>;
