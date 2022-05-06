@@ -30,7 +30,7 @@ vector<vector<T>> comb(T N, T K) {
 // Look-Up Table class for solved grid/case type
 
 
-template<class T> // on va tricher un peux pour l'optimisation
+template<class T>
 class _LUT {
 
     public:

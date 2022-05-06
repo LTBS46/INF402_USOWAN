@@ -54,7 +54,6 @@ void Formule_<T>::Convert() {  // TODO: compléter IF
 	// Remplir les clauses vides
 	// [Option] supprimer les tautologies
 
-	// Cas FND
 	int N = 1;
 	int S = 0;
 
@@ -78,7 +77,6 @@ void Formule_<T>::Convert() {  // TODO: compléter IF
 	for (auto& elem : form) {
 		auto ___gs = elem.GetSize();
 		offset /= ___gs;
-		std::cout << "Creating N = " << N << " clauses" << std::endl;
 		for (int i = 0; i < N; i++) {
 			int index = (i / offset) % ___gs;
 			Variable var = elem.vars[index];
@@ -91,7 +89,6 @@ void Formule_<T>::Convert() {  // TODO: compléter IF
 			negVar.SetNeg(!negVar.GetNeg());
 
 			if (std::find(fnc[i].vars.begin(), fnc[i].vars.end(), negVar) == fnc[i].vars.end()) {
-				// std::cout << "added clause to destroy" << "\n";
 				indices_to_destroy.push_back(i);
 				continue;
 			}

@@ -20,17 +20,12 @@ class Region_ final {
     vector<Case> cases;
     Formule clausesRegion = Formule(forme::FND);
 
-    void CreerClauses(LUT case_type_lut){
-    // Si une case est menteur, les autres ne le sont pas
-    // std::cout << "Creating clauses for new region" << std::endl;
-    ClauseUnMenteur();
-    ClauseConfigNonMenteur(case_type_lut);
-    ClauseConfigMenteur(case_type_lut);
+    void CreerClauses(LUT case_type_lut) {
+        ClauseUnMenteur();
+        ClauseConfigNonMenteur(case_type_lut);
+        ClauseConfigMenteur(case_type_lut);
+    }
     
-    clausesRegion.AfficherFormule();
-    // std::cout << "Done with creating region" << std::endl;
-    // Combinaisons si une case  n'est pas menteur
-}
     void RenderClauses(ostream& file);
 
     private:
